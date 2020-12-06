@@ -14,7 +14,7 @@ namespace MoviesAp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new MoviesPage();
         }
 
         protected override void OnStart()

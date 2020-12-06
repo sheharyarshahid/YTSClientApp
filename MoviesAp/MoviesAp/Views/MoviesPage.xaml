@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoviesAp.Views.MoviesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:models="clr-namespace:MoviesAp.Models"
+    xmlns:rainbow="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    ios:Page.UseSafeArea="True"
+    rainbow:DebugRainbow.ShowColors="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="MoviesItemTemplate" x:DataType="models:Movie">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Margin="0,0,0,10"
+                        FontAttributes="Bold"
+                        FontSize="Subtitle"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Title}" />
+
+                    <Image
+                        Grid.Row="1"
+                        Aspect="AspectFit"
+                        Source="{Binding LargeCoverImage}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3.5*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Carousel View (Movies)  -->
+            <StackLayout Grid.Row="0" Spacing="12">
+                <CarouselView
+                    x:Name="MoviesCarousel"
+                    HorizontalOptions="FillAndExpand"
+                    IndicatorView="indicatorView"
+                    ItemTemplate="{StaticResource MoviesItemTemplate}"
+                    VerticalOptions="FillAndExpand" />
+
+                <IndicatorView
+                    x:Name="indicatorView"
+                    Margin="0,12,0,0"
+                    HorizontalOptions="Center"
+                    IndicatorColor="LightGray"
+                    SelectedIndicatorColor="DarkGray" />
+            </StackLayout>
+
+            <!--  Progress Ring  -->
+            <StackLayout
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Padding="12"
+                BackgroundColor="White"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsBusy, Mode=OneWay}"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+                <ActivityIndicator IsRunning="True" />
+                <Label Text="Loading movies" />
+            </StackLayout>
+
+            <!--  Next 10 Movies Button  -->
+            <Button
+                x:Name="LoadNextMoviesBtn"
+                Grid.Row="2"
+                Margin="12"
+                BackgroundColor="MediumSlateBlue"
+                Text="Show Next 10"
+                VerticalOptions="End" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
