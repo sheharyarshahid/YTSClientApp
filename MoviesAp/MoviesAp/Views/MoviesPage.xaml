@@ -14,38 +14,22 @@
             <DataTemplate x:Key="MoviesItemTemplate" x:DataType="models:Movie">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200" />
-                        <!--<RowDefinition Height="*" />-->
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <!--<Label
+                    <Label
                         Margin="0,0,0,10"
                         FontAttributes="Bold"
                         FontSize="Subtitle"
                         HorizontalOptions="CenterAndExpand"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding Title}" />-->
+                        Text="{Binding Title}" />
 
                     <Image
-                        Grid.Row="0"
+                        Grid.Row="1"
                         Aspect="AspectFit"
                         Source="{Binding LargeCoverImage}" />
-
-                    <Grid VerticalOptions="End">
-                        <Grid
-                            BackgroundColor="MediumSeaGreen"
-                            HeightRequest="30"
-                            Opacity="0.7" />
-
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="Caption"
-                            HorizontalOptions="FillAndExpand"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding Title}"
-                            TextColor="White"
-                            VerticalOptions="Center" />
-                    </Grid>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
@@ -54,42 +38,12 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <!--<RowDefinition Height="3.5*" />-->
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="3.5*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <StackLayout
-                Margin="12"
-                Spacing="12"
-                VerticalOptions="Start">
-
-                <!--  Title  -->
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Subtitle"
-                    HorizontalOptions="StartAndExpand"
-                    Text="Popular Movies" />
-
-                <!--  Collection View (Popular Movies)  -->
-                <CollectionView
-                    x:Name="PopularMoviesCollection"
-                    ItemTemplate="{StaticResource MoviesItemTemplate}"
-                    ItemsSource="{Binding Movies}"
-                    VerticalOptions="Start">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="12" Orientation="Horizontal" />
-                    </CollectionView.ItemsLayout>
-                </CollectionView>
-            </StackLayout>
-
-
-
             <!--  Carousel View (Movies)  -->
-            <StackLayout
-                Grid.Row="0"
-                IsVisible="False"
-                Spacing="12">
+            <StackLayout Grid.Row="0" Spacing="12">
                 <CarouselView
                     x:Name="MoviesCarousel"
                     HorizontalOptions="FillAndExpand"
