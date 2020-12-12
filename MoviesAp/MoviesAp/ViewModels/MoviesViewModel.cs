@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using MoviesAp.Models;
@@ -12,6 +13,14 @@ namespace MoviesAp.ViewModels
     public class MoviesViewModel : BaseViewModel
     {
         public RestClient Client { get; set; }
+
+        private List<Movie> _movies = new List<Movie>();
+        public List<Movie> Movies
+        {
+            get => _movies;
+            set => SetProperty(ref _movies, value);
+        }
+
 
         public MoviesViewModel()
         {

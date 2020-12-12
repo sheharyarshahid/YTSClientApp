@@ -15,8 +15,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Fonts\FABrands.otf" />
+    <EmbeddedResource Include="Assets\Fonts\FADuotone.otf" />
+    <EmbeddedResource Include="Assets\Fonts\FAProLight.otf" />
+    <EmbeddedResource Include="Assets\Fonts\FARegular.otf" />
+    <EmbeddedResource Include="Assets\Fonts\FASolid.otf" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Views\MoviesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Fonts\FABrands.otf" />
+    <None Remove="Assets\Fonts\FADuotone.otf" />
+    <None Remove="Assets\Fonts\FAProLight.otf" />
+    <None Remove="Assets\Fonts\FARegular.otf" />
+    <None Remove="Assets\Fonts\FASolid.otf" />
   </ItemGroup>
 </Project>

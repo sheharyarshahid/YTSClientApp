@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace MoviesAp.Views
             LoadNextMoviesBtn.Clicked += LoadNextMoviesBtn_Clicked;
 
             MoviesVM.IsBusy = true;
-            MoviesCarousel.ItemsSource = await MoviesVM.GetMovies();
+            MoviesCarousel.ItemsSource = MoviesVM.Movies = await MoviesVM.GetMovies();
             MoviesVM.IsBusy = false;
         }
 
@@ -49,7 +50,8 @@ namespace MoviesAp.Views
 
             // Fetch next 10 movies
             _pageNum++;
-            MoviesCarousel.ItemsSource = await MoviesVM.GetMovies(_pageNum);
+            MoviesVM.Movies.Clear();
+            MoviesCarousel.ItemsSource = MoviesVM.Movies = await MoviesVM.GetMovies(_pageNum);
             MoviesCarousel.Position = 0;
 
             MoviesVM.IsBusy = false;
